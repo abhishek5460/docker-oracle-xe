@@ -1,0 +1,51 @@
+
+-Sql Developer and JDK
+https://www.oracle.com/technetwork/de...
+
+-Kitematic
+https://kitematic.com/
+
+RPM Package for 18c XE
+https://www.oracle.com/technetwork/da...
+
+Step By Step Guide To Install MSSQL Server On Mac Using Docker
+https://www.youtube.com/watch?v=BVNWR...
+
+- Commands that are used in this tutorial-
+
+- Commad to  Build Image - don't forget the dot at end
+
+docker build -t oracle-xe:18c .
+
+- Command to Run Docker - **Very Important You use sudo 
+
+sudo docker run -d \
+  -p 32118:1521 \
+  -p 35518:5500 \
+  -e ORACLE_PWD=Oracle18 \
+  --name=oracle-xe \
+  --volume ~/docker/oracle-xe:/opt/oracle/oradata \
+  --network=oracle_network18c \
+  oracle-xe:18c
+
+
+- In some cases you may need to login to the server to modify or test something on the file system or use SQLCL.Once Docker container is running Click on the exec option.:
+
+$ORACLE_HOME/bin/sqlplus sys/Oracle18@localhost/XE as sysdba
+
+$ORACLE_HOME/bin/sqlplus sys/Oracle18@localhost/XEPDB1 as sysdba
+
+-- Connect to CDB
+sqlcl sys/Oracle18@localhost:32118/XE as sysdba
+
+
+-- Connect to default PDB
+sqlcl sys/Oracle18@localhost:32118/XEPDB1 as sysdba
+
+
+How to Install Docker Container on Mac
+How to install Oracle 18c XE on Mac OS using Docker
+Tutorial to install Docker Container with Oracle DB on Mac
+Step by Step Process to install Oracle DB 18c XE on Mac OS
+Docker Tutorial For Mac OS.
+How to Setup Docker Container on Mac OS wit 18c XE
